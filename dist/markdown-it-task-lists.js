@@ -19,7 +19,7 @@ module.exports = function(md, options) {
 		for (var i = 2; i < tokens.length; i++) {
 			if (isTodoItem(tokens, i)) {
 				todoify(tokens[i], state.Token);
-				attrSet(tokens[i-2], 'class', 'task-list-item CmCheckBox');
+				attrSet(tokens[i-2], 'class', 'task-list-item');
 				attrSet(tokens[parentToken(tokens, i-2)], 'class', 'task-list');
 			}
 		}
@@ -69,9 +69,9 @@ function makeCheckbox(token, TokenConstructor) {
 	var checkbox = new TokenConstructor('html_inline', '', 0);
 	var disabledAttr = disableCheckboxes ? ' disabled="" ' : '';
 	if (token.content.indexOf('[ ]') === 0) {
-		checkbox.content = '<input class="task-list-item-checkbox"' + disabledAttr + 'type="checkbox"><span class="CmCheckBoxIcon"></span>';
+		checkbox.content = '<input class="task-list-item-checkbox"' + disabledAttr + 'type="checkbox">';
 	} else if (token.content.indexOf('[x]') === 0 || token.content.indexOf('[X]') === 0) {
-		checkbox.content = '<input class="task-list-item-checkbox" checked=""' + disabledAttr + 'type="checkbox"><span class="CmCheckBoxIcon"></span>';
+		checkbox.content = '<input class="task-list-item-checkbox" checked=""' + disabledAttr + 'type="checkbox">';
 	}
 	return checkbox;
 }
